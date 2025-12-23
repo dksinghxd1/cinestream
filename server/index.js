@@ -29,6 +29,9 @@ app.get('/api/search', async (req, res) => {
     res.status(500).json({ error: 'Failed to search movies' });
   }
 });
+app.get('/', (req, res) => {
+  res.send('CineStream backend is running!');
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
