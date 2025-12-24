@@ -18,9 +18,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-      - run: npm install
-      - run: npm run build
-      - run: npm test --if-present
+      - name: Clean install
+        run: |
+          rm -rf node_modules package-lock.json
+          npm install
+      - name: Fix react-scripts permissions
+        run: chmod +x node_modules/.bin/react-scripts
+      - name: Build
+        run: npm run build
+      - name: Test
+        run: npm test --if-present
 
 
 # Add deploy steps for Vercel/Netlify as needed
